@@ -1,3 +1,7 @@
-# Table of content
+# Summary
 
-* [First Chapter](chapter1.md)
+* [Introduction](README.md)
+* [Model](model.md)
+  * [Query Scopes](query-scopes.md)
+  * [Events](events.md)
+

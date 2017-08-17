@@ -1,0 +1,58 @@
+## Query Scopes {#query-scopes}
+
+Query scope memungkinkan kita untuk membuat _filter_ yang mungkin akan kita gunakan kembali pada aplikasi kita nantinya. Misalnya, kita mungkin ingin mengambil semua data _user_ yang dianggap "populer". Untuk membuat _scope \_tersebut, cukup awali \_method \_pada \_model_ menggunakan awalan \_**scope.**\_ Sebagai contoh sebagai berikut:
+
+```php
+class User extends Model
+{
+    /**
+     * Scope a query to only include popular users.
+     */
+    public function scopePopular($query)
+    {
+        return $query->where('votes', '>', 100);
+    }
+
+    /**
+     * Scope a query to only include active users.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
+}
+```
+
+#### Penggunaan Query Scope {#penggunaan-query-scope}
+
+Ketika \_query scope \_telah dibuat, kita dapat menerapkan \_scope \_tersebut ketika melakukan pemanggilan data pada \_model. \_Perlu diingat, kita tidak perlu menggunakan awalan **scope **ketika memanggil metode \_scope \_yang diinginkan. Kita juga dapat menggunakan dua atau l Scopesebih metode \_scope \_secara bersamaan. Sebagai contoh,
+
+```php
+$users = User::popular()->active()->orderBy('created_at')->get();
+```
+
+#### Query Scope yang Dinamis {#query-scope-yang-dinamis}
+
+Terkadang kita mungkin ingin membuat _scope_ yang dapat menerima _parameters_. Kita dapat melakukan hal tersebut dengan menambahkan parameter-parameter pada _scope. \_Pastikan Anda menambahkannsetelah _`$query`_ \_argument. _
+
+```php
+class User extends Model
+{
+    /**
+     * Scope a query to only include users of a given type.
+     */
+    public function scopeApplyType($query, $type)
+    {
+        return $query->where('type', $type);
+    }
+}
+```
+
+Sekarang kita dapat membubuhkan parameter ketika memanggil \_scope\_ tersebut dengan cara:
+
+```php
+$users = User::applyType('admin')->get();
+```
+
+
+
