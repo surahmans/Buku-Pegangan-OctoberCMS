@@ -2,6 +2,6 @@
 
 * [Introduction](README.md)
 * [Model](model.md)
-  * [Query Scopes](query-scopes.md)
-  * [Events](events.md)
+  * [Query Scopes](model/query-scopes.md)
+  * [Events](model/events.md)
 
